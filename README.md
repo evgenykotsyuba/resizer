@@ -1,10 +1,10 @@
-Project Name: Resizer
+## Project Name: Resizer
 Image Resizer, Background Remover and Dataset Maker for Stable Diffusion
 
-Description
+### Description
 This project is a Python script that resizes images in a folder and optionally removes their backgrounds using the rembg library. The configuration file specifies the location of the master and result folders, the resolution of the output images, the file types to process, and the file format for saving.
 
-Installation
+### Installation
 Clone the project repository from GitHub:
 
 bash
@@ -22,7 +22,7 @@ Run the resize.py script:
 python resize.py
 The resized images will be saved in the result folder specified in the configuration file.
 
-Configuration
+### Configuration
 The config.ini file specifies the following parameters:
 
 location: the master and result folders where the input and output images are stored, respectively.
@@ -32,5 +32,5 @@ background: whether to remove the background from the images using the rembg lib
 Credits
 This project uses the rembg library for background removal, which can be found at https://github.com/danielgatis/rembg.
 
-License
+### License
 This project is licensed under the MIT License.
