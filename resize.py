@@ -24,6 +24,8 @@ def image_resize():
         file_types = config.get('type', 'file_type').split(",")
         set_width = config.getint('resolution', 'width')
         set_height = config.getint('resolution', 'height')
+        default_extension = config.getboolean('type', 'default_extension')
+        new_extension = config.get('type', 'new_extension')
 
         # Loop through all the files in the master_model folder
         for filename in os.listdir(MASTER_FOLDER):
@@ -54,12 +56,23 @@ def image_resize():
                 if config.getboolean('background', 'remove_background'):
                     img = remove(img)
 
+                # Normalize the pixel values of the image
+                if config.getboolean('resolution', 'normalization'):
+                    img = cv2.normalize(img, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+
+                if config.getboolean('frame', 'rectangle_frame'):
+                    bottom_layer = (255, 255, 255, 127)  # white color
+                    img = cv2.rectangle(img, (0, 0), (set_width, set_height), bottom_layer, 10)  # add image frame
+
+                # Black & white result.
+                if config.getboolean('color', 'black_and_white'):
+                    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
                 # Rename the image file if necessary
-                if not config.getboolean('type', 'default_extension'):
-                    new_extension = config.get('type', 'new_extension')
+                if not default_extension:
                     filename = os.path.splitext(filename)[0] + '.' + new_extension
 
-                # Build the full path to the result image file and save it
+                # Save the image file
                 result_path = os.path.join(RESULT_FOLDER, filename)
                 cv2.imwrite(result_path, img)
 
