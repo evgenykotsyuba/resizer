@@ -7,19 +7,16 @@ This project is a Python script that resizes images in a folder and optionally r
 ### Installation
 Clone the project repository from GitHub:
 
-bash
-Copy code
-git clone https://github.com/evgenykotsyuba/resizer.git
-Install the required Python libraries using pip:
+Run: bash in Linux or cmd in Windows</br>
+Copy code: **"git clone https://github.com/evgenykotsyuba/resizer.git"**
 
-Copy code
-pip install -r requirements.txt
+Install the required Python libraries using pip:
+Copy code: **"pip install -r requirements.txt"**
+
 Usage
 Place the images to be resized in the master folder specified in the configuration file.
 
-Run the resize.py script:
-
-python resize.py
+Run the resize.py script: **"python resize.py"**
 The resized images will be saved in the result folder specified in the configuration file.
 
 ### Configuration

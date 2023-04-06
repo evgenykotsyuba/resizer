@@ -79,6 +79,8 @@ def image_resize():
                 # Print a message to indicate that the file has been processed
                 print(f'{filename} has been resized and saved successfully!')
 
+        print('Script is completed successfully!')
+
     except Exception as e:
         print(f'Error: {e}')
 

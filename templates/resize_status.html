@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Resize status</title>
+<!--    <link rel="stylesheet" type="text/css" href="styles.css">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+    <center><h1>Configuration Editor</h1></center>
+    <form>
+        <h2>{{ status }}</h2>
+    </form>
+    <br />
+    <form action="/" method="post">
+        <input type="submit" value="Back">
+    </form>
+</body>
+</html>

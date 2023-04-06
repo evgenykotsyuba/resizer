@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Configuration Editor</title>
+<!--    <link rel="stylesheet" type="text/css" href="styles.css">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+    <center><h1>Configuration Editor</h1></center>
+    <form method="post">
+        {% for section in config.sections() %}
+            <h2>{{ section }}</h2>
+            {% for key in config[section] %}
+                {% if key == 'rectangle_frame' or key == 'black_and_white' or key == 'remove_background' or key == 'default_extension' or key == 'normalization' %}
+                    <p>{{ key }}:
+                        <select name="{{ key }}">
+                            <option value="true" {% if config[section][key] == 'true' %}selected{% endif %}>True</option>
+                            <option value="false" {% if config[section][key] == 'false' %}selected{% endif %}>False</option>
+                        </select>
+                    </p>
+                {% else %}
+                    <p>{{ key }}: <input type="text" name="{{ key }}" value="{{ config[section][key] }}"></p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Save">
+    </form>
+    <br />
+    <form action="/resize" method="post">
+        <input type="submit" value="Resize">
+    </form>
+</body>
+</html>
