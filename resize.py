@@ -56,6 +56,15 @@ def image_resize():
                 if config.getboolean('background', 'remove_background'):
                     img = remove(img)
 
+                # Blur the background from the image
+                if config.getboolean('background', 'blur_background'):
+                    # img = cv2.blur(img, (3, 3))
+                    background = cv2.blur(img, (4, 4))
+                    overlay = remove(img)
+                    background_gray = cv2.cvtColor(background, cv2.COLOR_RGBA2RGB)
+                    overlay_gray = cv2.cvtColor(overlay, cv2.COLOR_RGBA2RGB)
+                    img = cv2.addWeighted(background_gray, 0.5, overlay_gray, 0.5, 0)
+
                 # Normalize the pixel values of the image
                 if config.getboolean('resolution', 'normalization'):
                     img = cv2.normalize(img, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)

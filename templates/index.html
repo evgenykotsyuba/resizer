@@ -11,7 +11,7 @@
         {% for section in config.sections() %}
             <h2>{{ section }}</h2>
             {% for key in config[section] %}
-                {% if key == 'rectangle_frame' or key == 'black_and_white' or key == 'remove_background' or key == 'default_extension' or key == 'normalization' %}
+                {% if key == 'rectangle_frame' or key == 'black_and_white' or key == 'remove_background' or key == 'blur_background' or key == 'default_extension' or key == 'normalization' %}
                     <p>{{ key }}:
                         <select name="{{ key }}">
                             <option value="true" {% if config[section][key] == 'true' %}selected{% endif %}>True</option>
